@@ -4,3 +4,5 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^man-roxygen$
+^\.travis\.yml$
+^wercker\.yml$
