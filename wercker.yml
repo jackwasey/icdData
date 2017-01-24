@@ -1,0 +1,17 @@
+box: rocker/hadleyverse
+#box: jackwasey/r-devel-ubsan-gcc
+#command-timeout: 60
+#no-response-timeout: 60
+build:
+  steps:
+    - install-packages
+    - script:
+        name: icdData test environment
+        code: |
+            rm .Rinstignore  # install everything for testing
+            sed -i.bak '/[Dd]ata/d' .Rbuildignore # do include data for testing
+#    - jimhester/r-dependencies:
+#        github_packages: jimhester/covr
+    - jimhester/r-lint
+    - jimhester/r-check
+    - jimhester/r-coverage

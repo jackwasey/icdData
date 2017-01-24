@@ -1,0 +1,43 @@
+# https://docs.travis-ci.com/user/languages/r
+language: r
+# dist: trusty
+# trusty will only work with sudo: true for now
+# https://ropensci.org/blog/2016/07/12/travis-osx
+sudo: false
+cache: packages
+
+addons:
+  apt:
+  packages:
+  r-cran-rodbc
+
+r:
+- oldrel # when oldrel = 3.1, there are S3 method problems I can't debug
+- release
+- devel
+
+matrix:
+  allow_failures:
+  - r: oldrel
+
+repos:
+  CRAN: https://cloud.r-project.org
+
+r_github_packages:
+- jimhester/covr
+
+warnings_are_errors: true
+
+before_script:
+- rm .Rinstignore  # do install everything for testing
+- sed -i.old '/[Dd]ata/d' .Rbuildignore # do include data for testing
+- export R_CHECK_CRAN_INCOMING_=FALSE
+- export _R_CHECK_FORCE_SUGGESTS_=FALSE
+
+after_success:
+- Rscript 'covr::coveralls()'
+
+notifications:
+  email:
+  on_success: change
+  on_failure: change
