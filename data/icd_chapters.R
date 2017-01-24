@@ -47,13 +47,3 @@ icd10_chapters <- list(
   "External causes of morbidity" = c(start = "V00", end = "Y99"),
   "Factors influencing health status and contact with health services" = c(start = "Z00", end = "Z99")
 )
-
-#' Get ICD-9 or ICD-10 chapter names and number ranges
-#' @return Named list of the ICD-9 or ICD-10 chapters, with the start and end
-#'   codes for each chapter
-#' @export
-icd9_get_chapters <- function() icd9_chapters
-
-#' @rdname icd9_get_chapters
-#' @export
-icd10_get_chapters <- function() icd10_chapters
