@@ -8,10 +8,8 @@ build:
     - script:
         name: icdData test environment
         code: |
-            rm .Rinstignore  # install everything for testing
+            rm -f .Rinstignore  # install everything for testing
             sed -i.bak '/[Dd]ata/d' .Rbuildignore # do include data for testing
-#    - jimhester/r-dependencies:
-#        github_packages: jimhester/covr
     - jimhester/r-lint
     - jimhester/r-check
     - jimhester/r-coverage
