@@ -35,7 +35,7 @@ before_script:
 - export _R_CHECK_FORCE_SUGGESTS_=FALSE
 
 after_success:
-- Rscript 'covr::coveralls()'
+ - Rscript -e 'covr::coveralls()'
 
 notifications:
   email:
