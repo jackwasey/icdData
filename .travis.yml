@@ -8,13 +8,13 @@ cache: packages
 
 addons:
   apt:
-  packages:
-  r-cran-rodbc
+    packages:
+     - r-cran-rodbc
 
 r:
-- oldrel # when oldrel = 3.1, there are S3 method problems I can't debug
-- release
-- devel
+  - oldrel # when oldrel = 3.1, there are S3 method problems I can't debug
+  - release
+  - devel
 
 matrix:
   allow_failures:
@@ -24,16 +24,16 @@ repos:
   CRAN: https://cloud.r-project.org
 
 r_github_packages:
-- jimhester/covr
-- jimhester/lintr
+  - jimhester/covr
+  - jimhester/lintr
 
 warnings_are_errors: true
 
 before_script:
-- rm .Rinstignore  # do install everything for testing
-- sed -i.old '/[Dd]ata/d' .Rbuildignore # do include data for testing
-- export R_CHECK_CRAN_INCOMING_=FALSE
-- export _R_CHECK_FORCE_SUGGESTS_=FALSE
+  - rm .Rinstignore  # do install everything for testing
+  - sed -i.old '/[Dd]ata/d' .Rbuildignore # do include data for testing
+  - export R_CHECK_CRAN_INCOMING_=FALSE
+  - export _R_CHECK_FORCE_SUGGESTS_=FALSE
 
 after_success:
  - Rscript -e 'covr::coveralls()'
@@ -45,4 +45,4 @@ notifications:
   on_failure: change
 
 on_failure:
-- ./travis-tool.sh dump_logs
+  - ./travis-tool.sh dump_logs
