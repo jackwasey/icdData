@@ -33,7 +33,7 @@ before_script:
   - sed -i.old '/[Dd]ata/d' .Rbuildignore # do include data for testing
   - export R_CHECK_CRAN_INCOMING_=FALSE
   - export _R_CHECK_FORCE_SUGGESTS_=FALSE
-  - rm -rf data.old .Rinstignore .Rbuildignore  # do install everything for testing
+  - rm -rf .Rbuildignore.old
 
 after_success:
  - Rscript -e 'covr::coveralls()'
